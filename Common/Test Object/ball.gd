@@ -4,8 +4,7 @@ class_name Ball
 var ball_data : BallData:
 	set(value):
 		ball_data = value
-		sprite_2d.modulate = value.color
-		position = value.position
+		apply_data()
 
 
 ## FIX BALL COLOR SPAWNING LOGIC 
@@ -16,30 +15,17 @@ var ball_data : BallData:
 var sprite_color : Color
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if ball_data == null:
-		ball_data = BallData.new()
-	else:
-		get_rand_color()
+func _ready():
+	if ball_data:
+		apply_data()
 
+func apply_data() -> void:
+	sprite_2d.modulate = ball_data.color
+	position = ball_data.position
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-func get_rand_color() -> void:
-	match randi_range(0, 3) :
-		0:
-			sprite_color = Color.RED
-		1:
-			sprite_color = Color.BLUE
-		2:
-			sprite_color = Color.GREEN
-		3:
-			sprite_color = Color.YELLOW
-			
-	sprite_2d.modulate = sprite_color
-	ball_data.color = sprite_color
-	print()
 
 func _on_timer_timeout() -> void:
 	return

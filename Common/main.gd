@@ -12,14 +12,12 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		var new_ball_data = BallData.new()
-		new_ball_data.position = Global.mouse_position
+		var new_ball_data = BallData.create(Global.mouse_position)
 		var new_ball = spawn_ball(new_ball_data)
 		
 		SaveLoad.save_game.balls_data.push_back(new_ball.ball_data)
 		
-		print("list size: " + str(ball_list.size()))
-		if ball_list.size() > 3:
+		if ball_list.size() > 5:
 			var object_to_remove = ball_list.pop_front()
 			SaveLoad.save_game.balls_data.pop_front()
 			if is_instance_valid(object_to_remove):
@@ -29,12 +27,7 @@ func _input(event: InputEvent) -> void:
 
 func load_balls_from_save() -> void:
 	for load_ball_data in SaveLoad.save_game.balls_data:
-		var new_ball : Ball = ball_scene.instantiate()
-		add_child(new_ball)
-		print(str(load_ball_data.position) + " " + str(load_ball_data.color))
-		new_ball.ball_data = load_ball_data
-		
-		ball_list.push_back(new_ball)
+		spawn_ball(load_ball_data)
 
 func spawn_ball(_ball_data : BallData = null) -> Ball:
 	var new_ball : Ball = ball_scene.instantiate()
