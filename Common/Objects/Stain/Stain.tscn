@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://c0887nimxc65p"]
+
+[ext_resource type="Texture2D" uid="uid://dccco7obl0upt" path="res://Assets/Sprites/stain_01.png" id="1_11tjj"]
+[ext_resource type="Script" uid="uid://bj1teck7g504j" path="res://Common/Objects/Stain/stain.gd" id="1_aawfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mymv"]
+size = Vector2(64, 64)
+
+[node name="Stain" type="Node2D" unique_id=853784583 node_paths=PackedStringArray("area", "sprite", "out_of_bounds_timer", "respawn_timer", "distance_label")]
+script = ExtResource("1_aawfj")
+area = NodePath("Area2D")
+stain_health = 10
+sprite = NodePath("Sprite2D")
+out_of_bounds_timer = NodePath("Out of bounds timer")
+respawn_timer = NodePath("Respawn timer")
+distance_label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=797904013]
+texture = ExtResource("1_11tjj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1819690207]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1263276021]
+shape = SubResource("RectangleShape2D_0mymv")
+
+[node name="Label" type="Label" parent="." unique_id=828133782]
+offset_right = 107.0
+offset_bottom = 23.0
+text = "112312"
+
+[node name="Out of bounds timer" type="Timer" parent="." unique_id=936350900]
+wait_time = 0.2
+one_shot = true
+
+[node name="Respawn timer" type="Timer" parent="." unique_id=1311382509]
+one_shot = true
+
+[connection signal="mouse_shape_entered" from="Area2D" to="." method="_on_area_2d_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="Area2D" to="." method="_on_area_2d_mouse_shape_exited"]
+[connection signal="timeout" from="Out of bounds timer" to="." method="_on_out_of_bounds_timer_timeout"]
+[connection signal="timeout" from="Respawn timer" to="." method="_on_respawn_timer_timeout"]

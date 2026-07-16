@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bjyk3jqxswlv3"]
+
+[ext_resource type="Script" uid="uid://c02b7eej5wugm" path="res://Common/Objects/Fish/fish.gd" id="1_h8y1e"]
+[ext_resource type="Texture2D" uid="uid://dvf8nh44ngwx3" path="res://Assets/Sprites/fish.png" id="1_xk7me"]
+[ext_resource type="Script" uid="uid://bfr8aor71t5ms" path="res://Common/Objects/Fish/Fish State Machine/Fish_StateMachine.gd" id="3_o0m6g"]
+[ext_resource type="Script" uid="uid://bqtpcikrwdy28" path="res://Common/Objects/Fish/Fish State Machine/States/IdleState_Fish.gd" id="4_o0m6g"]
+[ext_resource type="Script" uid="uid://c4o653wv0ntdi" path="res://Common/Objects/Fish/Fish State Machine/States/MoveState_Fish.gd" id="5_x7g1v"]
+[ext_resource type="Texture2D" uid="uid://bh0nofp7juk4j" path="res://Assets/Sprites/fish_frame.png" id="7_42ktr"]
+[ext_resource type="Texture2D" uid="uid://cdaylddn04yho" path="res://Assets/Sprites/fish_eyes.png" id="9_5gtjg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4srj1"]
+load_path = "res://.godot/imported/fish_body_white.png-685eb8cdee6bafe5cd7fcd4852188a3b.ctex"
+
+[node name="Fish" type="CharacterBody2D" unique_id=1647011000]
+script = ExtResource("1_h8y1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1533065702]
+visible = false
+texture = ExtResource("1_xk7me")
+
+[node name="Fish StateMachine" type="Node" parent="." unique_id=187115528 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_o0m6g")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="Fish StateMachine" unique_id=1870773172]
+script = ExtResource("4_o0m6g")
+
+[node name="Idle Timer" type="Timer" parent="Fish StateMachine/Idle" unique_id=1853103232]
+one_shot = true
+
+[node name="Move" type="Node" parent="Fish StateMachine" unique_id=643758891]
+script = ExtResource("5_x7g1v")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1666765909]
+
+[node name="Sprites Anchor" type="Node2D" parent="." unique_id=823842435]
+
+[node name="FishBodyWhite" type="Sprite2D" parent="Sprites Anchor" unique_id=2031737605]
+position = Vector2(-4, 0)
+texture = SubResource("CompressedTexture2D_4srj1")
+
+[node name="Fish Frame" type="Sprite2D" parent="Sprites Anchor" unique_id=636174161]
+position = Vector2(-4, 0)
+texture = ExtResource("7_42ktr")
+
+[node name="FishEyes" type="Sprite2D" parent="Sprites Anchor" unique_id=1425138734]
+position = Vector2(-3, 0)
+texture = ExtResource("9_5gtjg")
+
+[connection signal="timeout" from="Fish StateMachine/Idle/Idle Timer" to="Fish StateMachine/Idle" method="_on_idle_timer_timeout"]

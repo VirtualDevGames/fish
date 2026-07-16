@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://15twud3h0scy"]
+
+[ext_resource type="Script" uid="uid://dfsijya20fa6l" path="res://Common/main.gd" id="1_0285w"]
+[ext_resource type="PackedScene" uid="uid://bgjg6u1uhiup1" path="res://Common/UI/UI Main.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://c0887nimxc65p" path="res://Common/Objects/Stain/Stain.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bjyk3jqxswlv3" path="res://Common/Objects/Fish/Fish.tscn" id="3_i206d"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8cxyx"]
+vertices = PackedVector2Array(1143.9766, 639, 10.9765625, 639, 10.0078125, 11.9921875, 1143.0078, 11)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 2, 1153, 1, 1154, 649, 1, 649)])
+
+[node name="Main" type="Node2D" unique_id=1341102281]
+script = ExtResource("1_0285w")
+
+[node name="UiMain" parent="." unique_id=246937818 instance=ExtResource("1_jjgbg")]
+offset_left = 208.0
+offset_top = 395.0
+offset_right = 208.0
+offset_bottom = 395.0
+
+[node name="Stain" parent="." unique_id=853784583 instance=ExtResource("2_bo1nx")]
+position = Vector2(330, 262)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=631757842]
+position = Vector2(576, 325)
+
+[node name="Fish" parent="." unique_id=542181952 instance=ExtResource("3_i206d")]
+position = Vector2(635, 225)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1078577525]
+navigation_polygon = SubResource("NavigationPolygon_8cxyx")

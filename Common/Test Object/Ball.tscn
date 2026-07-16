@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d4l66j6m0mgeq"]
+
+[ext_resource type="Script" uid="uid://h8e3x4v85bj6" path="res://Common/Test Object/ball.gd" id="1_k3xr4"]
+[ext_resource type="Texture2D" uid="uid://dqnc16b72qp6u" path="res://Common/Test Object/ball.png" id="2_auj8p"]
+
+[node name="TestObject" type="Node2D" unique_id=1941640785 node_paths=PackedStringArray("sprite_2d")]
+script = ExtResource("1_k3xr4")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=622078148]
+texture = ExtResource("2_auj8p")
+
+[node name="Timer" type="Timer" parent="." unique_id=762364050]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
