@@ -4,12 +4,9 @@ class_name Ball
 var ball_data : BallData:
 	set(value):
 		ball_data = value
-		if ball_data:
-			if ball_data.color != Color.BLACK:
-				sprite_2d.modulate = value.color
-			position = value.position
-		else:
-			get_rand_color()
+		sprite_2d.modulate = value.color
+		position = value.position
+
 
 ## FIX BALL COLOR SPAWNING LOGIC 
 
@@ -22,6 +19,8 @@ var sprite_color : Color
 func _ready() -> void:
 	if ball_data == null:
 		ball_data = BallData.new()
+	else:
+		get_rand_color()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

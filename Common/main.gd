@@ -38,10 +38,10 @@ func load_balls_from_save() -> void:
 
 func spawn_ball(_ball_data : BallData = null) -> Ball:
 	var new_ball : Ball = ball_scene.instantiate()
-	add_child(new_ball)
 	if _ball_data:
 		new_ball.ball_data = _ball_data
-		
+	
+	add_child(new_ball)
 	ball_list.push_back(new_ball)
 	
 	return new_ball

@@ -3,18 +3,21 @@
 [ext_resource type="Script" path="res://Data/Ball/ball_data.gd" id="1_p08lk"]
 [ext_resource type="Script" path="res://Common/SaveGame/SaveGame.gd" id="2_8e2nm"]
 
-[sub_resource type="Resource" id="Resource_kuap8"]
-script = ExtResource("1_p08lk")
-position = Vector2(554, 294)
-
 [sub_resource type="Resource" id="Resource_p08lk"]
 script = ExtResource("1_p08lk")
-position = Vector2(484, 434)
+position = Vector2(449, 227)
+color = Color(0, 1, 0, 1)
 
 [sub_resource type="Resource" id="Resource_8e2nm"]
 script = ExtResource("1_p08lk")
-position = Vector2(809, 245)
+position = Vector2(666, 263)
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_kuap8"]
+script = ExtResource("1_p08lk")
+position = Vector2(798, 263)
+color = Color(0, 1, 0, 1)
 
 [resource]
 script = ExtResource("2_8e2nm")
-balls_data = Array[ExtResource("1_p08lk")]([SubResource("Resource_kuap8"), SubResource("Resource_p08lk"), SubResource("Resource_8e2nm")])
+balls_data = Array[ExtResource("1_p08lk")]([SubResource("Resource_p08lk"), SubResource("Resource_8e2nm"), SubResource("Resource_kuap8")])
